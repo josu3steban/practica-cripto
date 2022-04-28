@@ -1,4 +1,8 @@
 import styled from "@emotion/styled";
+import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { cryptoSetDataForm, startCryptoSetData } from "../actions/crypto";
+import { startLoadData } from "../actions/loadDta";
 import { listMoney } from "../data/listMoney";
 import { useSelectMoney } from "../hooks/useSelect";
 
@@ -39,12 +43,33 @@ const InputSubmit = styled.input`
 
 export const FormCripto = () => {
 
-    const [ SelectMoney ] = useSelectMoney('Elíge la Moneda Prro', listMoney);
+    const dispatch = useDispatch();
 
-    const [ SelectCrypto ] = useSelectMoney('Elíge la Criptomoneda Prro', listMoney);
+    const { criptos } = useSelector( state => state.load);
+
+    const [ money, SelectMoney ] = useSelectMoney('Elíge la Moneda Prro', listMoney);
+
+    const [ crypto, SelectCrypto ] = useSelectMoney('Elíge la Criptomoneda Prro', criptos);
 
     const hanldeSubmit = (e) => {
         e.preventDefault();
+
+        if( money !== '' && crypto !== '' ) {
+            
+            dispatch( cryptoSetDataForm(money, crypto) );
+
+            dispatch( startCryptoSetData( {money, crypto} ))
+
+        }else {
+
+            dispatch( cryptoSetDataForm("", "") );
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Ups!',
+                text: 'OPCIONES SELECCIONADAS INCORRECTAS',
+            })
+        }
     }
 
     return( 

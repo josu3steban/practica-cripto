@@ -1,7 +1,9 @@
 import { types } from "../types/types";
 
 const initialState = {
-    criptos: {},
+    currency: '',
+    crypto: '',
+    queryDta: {},
     state: null
 }
 
@@ -9,10 +11,17 @@ export const criptoQueryReducer = (state = initialState, action) => {
 
     switch( action.type ) {
 
-        case types.cryptoDataForm:
+        case types.cryptoSetDataForm:
             return {
                 ...state,
-                criptos: action.payload
+                currency: action.payload.currency,
+                crypto: action.payload.crypto
+            }
+
+        case types.cryptoSetData:
+            return {
+                ...state,
+                queryDta: action.payload
             }
 
         default:

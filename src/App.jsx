@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startLoadData } from './actions/loadDta';
 import Logo from './assets/img/imagen-criptos.png';
 import { FormCripto } from './components/FormCripto';
@@ -33,10 +33,12 @@ const Heading = styled.h1`
 const App = () => {
 
   const dispatch = useDispatch();
+
+  const { currency, crypto} = useSelector( (state) => state.crypto );
   
-  // useEffect( () => {
-  //   dispatch( startLoadData() );
-  // }, []);
+  useEffect( () => {
+    dispatch( startLoadData() );
+  }, []);
 
   return (
     <Container>
@@ -47,6 +49,9 @@ const App = () => {
         <Heading>Consulta las Cripto Broer</Heading>
 
         <FormCripto />
+
+        <p>{ currency }</p>
+        <p>{ crypto }</p>
       </div> 
 
     </Container>

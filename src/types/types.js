@@ -4,8 +4,8 @@ export const types = {
 
     loadData:           '[load] load data',
 
-    cryptoStartData:    '[crypto] start data',
-    cryptoDataForm:     '[crypto] data form',
+    cryptoSetData:      '[crypto] start data',
+    cryptoSetDataForm:  '[crypto] data form',
 
     uiStartLoading:     '[ui] start loading',
     uiFinishLoading:    '[ui] finish loading',

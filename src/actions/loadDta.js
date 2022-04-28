@@ -1,31 +1,45 @@
+import Swal from "sweetalert2";
+import 'sweetalert2/dist/sweetalert2.min.css';
 import { types } from "../types/types"
 
-const temp = [
-    {
-        name: 'Josue',
-        lastname: 'Tomala',
-        age: '26',
-    },
-    {
-        name: 'Sara',
-        lastname: 'Esparza',
-        age: '46',
-    },
-    {
-        name: 'Caro',
-        lastname: 'Tomala',
-        age: '29',
-    }
-]
 
 export const startLoadData = () => {
-    return ( dispatch ) => {
+    return async ( dispatch ) => {
 
-        setTimeout( () => {
+        try {
 
-            dispatch( loadData( temp ) );
+            const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
 
-        }, 5000)
+            const response = await fetch( url );
+            const data = await response.json();
+
+            if( response.ok ) {
+
+                const dataName = data.Data.map( ( item ) => {
+
+                    return {
+                        id: item.CoinInfo.Name,
+                        name: item.CoinInfo.FullName
+                    }
+                })
+
+                console.log(dataName);
+
+                dispatch( loadData( dataName ) );
+            }
+
+        } catch ( error ) {
+
+            console.log( error );
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Ups!',
+                text: 'Ocurrió un error al conectarse a la api!',
+            })
+        }
+        
+
     }
 }
 
