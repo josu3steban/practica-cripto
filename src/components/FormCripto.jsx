@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { cryptoSetDataForm, startCryptoSetData } from "../actions/crypto";
+import { cryptoSetDataForm, cryptoSetDataFormReset, startCryptoSetData } from "../actions/crypto";
 import { startLoadData } from "../actions/loadDta";
 import { listMoney } from "../data/listMoney";
 import { useSelectMoney } from "../hooks/useSelect";
@@ -62,7 +62,7 @@ export const FormCripto = () => {
 
         }else {
 
-            dispatch( cryptoSetDataForm("", "") );
+            dispatch( cryptoSetDataFormReset() );
 
             Swal.fire({
                 icon: 'error',

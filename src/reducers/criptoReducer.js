@@ -4,7 +4,7 @@ const initialState = {
     currency: '',
     crypto: '',
     queryDta: {},
-    state: null
+    state: false
 }
 
 export const criptoQueryReducer = (state = initialState, action) => {
@@ -18,10 +18,20 @@ export const criptoQueryReducer = (state = initialState, action) => {
                 crypto: action.payload.crypto
             }
 
+        case types.cryptoSetDataFormReset:
+            return {
+                ...state,
+                currency: '',
+                crypto: '',
+                queryDta: {},
+                state: false
+            }
+
         case types.cryptoSetData:
             return {
                 ...state,
-                queryDta: action.payload
+                queryDta: action.payload.data,
+                state: action.payload.state
             }
 
         default:

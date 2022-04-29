@@ -23,14 +23,14 @@ export const startLoadData = () => {
                     }
                 })
 
-                console.log(dataName);
+                // console.log(dataName);
 
                 dispatch( loadData( dataName ) );
             }
 
         } catch ( error ) {
 
-            console.log( error );
+            // console.log( error );
 
             Swal.fire({
                 icon: 'error',

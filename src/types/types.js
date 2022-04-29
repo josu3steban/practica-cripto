@@ -6,6 +6,7 @@ export const types = {
 
     cryptoSetData:      '[crypto] start data',
     cryptoSetDataForm:  '[crypto] data form',
+    cryptoSetDataFormReset: '[crypto] data form reset',
 
     uiStartLoading:     '[ui] start loading',
     uiFinishLoading:    '[ui] finish loading',

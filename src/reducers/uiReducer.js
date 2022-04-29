@@ -3,7 +3,7 @@ import { types } from "../types/types";
 
 
 const initialState = {
-    loading: true,
+    loading: false,
     typeError: null,
     msgError: null
 }
