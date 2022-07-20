@@ -47,9 +47,9 @@ export const FormCripto = () => {
 
     const { criptos } = useSelector( state => state.load);
 
-    const [ money, SelectMoney ] = useSelectMoney('Elíge la Moneda Prro', listMoney);
+    const [ money, SelectMoney ] = useSelectMoney('Elige un tipo de moneda', listMoney);
 
-    const [ crypto, SelectCrypto ] = useSelectMoney('Elíge la Criptomoneda Prro', criptos);
+    const [ crypto, SelectCrypto ] = useSelectMoney('Elíge la Criptomoneda', criptos);
 
     const hanldeSubmit = (e) => {
         e.preventDefault();
